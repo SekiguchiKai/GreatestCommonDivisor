@@ -19,23 +19,16 @@ class Main {
 
     private static int getCommonDivisor(int x, int y) {
         int answer;
+        int largerNum = Math.max(x, y);
+        int smallerNum = Math.min(x, y);
 
-        if (x >= y) {
-            answer = x % y;
+        answer = largerNum % smallerNum;
 
-            if (answer == 0) {
-                return y;
-            }
-            answer = getCommonDivisor(y, answer);
-        } else {
-            answer = y % x;
-            if (answer == 0) {
-                return x;
-            }
-            answer = getCommonDivisor(x, answer);
+        if (answer == 0) {
+            return smallerNum;
         }
+        answer = getCommonDivisor(smallerNum, answer);
+
         return answer;
-
     }
-
 }
